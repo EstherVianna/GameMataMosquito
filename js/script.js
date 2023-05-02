@@ -1,30 +1,27 @@
 var altura = 0;
 var largura = 0;
 let vidas = 1;
-let tempo = 11;
-var duracaoMosca = 2000;
-var criaMosquito = setInterval(function() { 
-    posicaoRandomica()
-    }, duracaoMosca)
+let tempo = 10;
+let duracaoMosca = 2000;
 
-var nivel = window.location.search;
+function adaptarNivel() {
+    var nivel = window.location.search;
+    nivel = nivel.replace("?", "")
 
-nivel = nivel.replace("?", "")
+    if(nivel === 'medio'){
+        duracaoMosca = 1500;
 
- if(nivel === "facil"){
-    duracaoMosca;
+    }else if(nivel === 'dificil'){
+        duracaoMosca = 1000;
 
- }else if (nivel === "normal"){
-    duracaoMosca = 1500;
+    }
+}
 
- }else if(nivel === "dificil"){
-    duracaoMosca = 1000;
- }
+adaptarNivel()
 
 function ajustarTamanhoPalcoJogo(){
-
- altura = window.innerHeight;
- largura = window.innerWidth;
+    altura = window.innerHeight;
+    largura = window.innerWidth;
 }
 
 ajustarTamanhoPalcoJogo()
@@ -32,19 +29,16 @@ ajustarTamanhoPalcoJogo()
 var cronometro = setInterval(()=>{
     tempo -= 1;
 
-    if(tempo < 0){
+    if(tempo === 0){
         clearInterval(cronometro);
 		clearInterval(criaMosquito);
         window.location.href = "vitoria.html";
     }
-
     document.querySelector("#tempoRestante").innerHTML = tempo;
- 
-}, 1000);
+ }, 1000);
 
 
 function posicaoRandomica(){
-
     var imagem = document.querySelector("#v" + vidas);
 
     if(document.querySelector("#mosquito")){
