@@ -55,7 +55,7 @@ function posicaoRandomica(){
     var posicaoY = Math.floor(Math.random() * altura) - 90;
 
     posicaoX = posicaoX <= 0 ? 110 : posicaoX;
-    posicaoY = posicaoY <= 0 ? 130 : posicaoY;
+    posicaoY = posicaoY <= 0 ? 110 : posicaoY;
     
 
     var mosquito = document.createElement("img");
